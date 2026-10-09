@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -188,9 +188,9 @@ int match_pattern(const char *src, const char* pattern){
 
 void pattern_replace(char src[]){
 
-	for (size_t i = 0; i < count; i++)
+	for (size_t i = 0; i < strlen(src); i++)
 	{
-		/* code */
+		
 	}
 	
 
