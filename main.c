@@ -14,21 +14,22 @@ void pattern_replace(char src[]);
 
 int main(void)
 {
+
 	/***************************************Part 1*************************************************/
-	/*
-	puts("*****Part 1*****");
-	printf("[%c] %s an separator\n", '.', is_separator('.') ? "is" : "is not");
-	printf("[%c] %s an separator\n", ';', is_separator(';') ? "is" : "is not");
-	printf("[%c] %s an separator\n", '\n', is_separator('\n') ? "is" : "is not");
-	printf("[%c] %s an separator\n", ' ', is_separator(' ') ? "is" : "is not");
-	printf("[%c] %s an separator\n", 'A', is_separator('A') ? "is" : "is not");
-	putchar('\n');
-	printf("[%c] %s a letter\n", 'Z', is_letter('Z') ? "is" : "is not");
-	printf("[%c] %s a letter\n", 'f', is_letter('f') ? "is" : "is not");
-	printf("[%c] %s a letter\n", '\t', is_letter('\t') ? "is" : "is not");
-	printf("[%c] %s a letter\n", ' ', is_letter(' ') ? "is" : "is not");
-	printf("[%c] %s a letter\n", 'g', is_letter('g') ? "is" : "is not");
-	*/
+	
+	// puts("*****Part 1*****");
+	// printf("[%c] %s an separator\n", '.', is_separator('.') ? "is" : "is not");
+	// printf("[%c] %s an separator\n", ';', is_separator(';') ? "is" : "is not");
+	// printf("[%c] %s an separator\n", '\\n', is_separator('\n') ? "is" : "is not");
+	// printf("[%c] %s an separator\n", ' ', is_separator(' ') ? "is" : "is not");
+	// printf("[%c] %s an separator\n", 'A', is_separator('A') ? "is" : "is not");
+	// putchar('\n');
+	// printf("[%c] %s a letter\n", 'Z', is_letter('Z') ? "is" : "is not");
+	// printf("[%c] %s a letter\n", 'f', is_letter('f') ? "is" : "is not");
+	// printf("[%c] %s a letter\n", '\t', is_letter('\t') ? "is" : "is not");
+	// printf("[%c] %s a letter\n", ' ', is_letter(' ') ? "is" : "is not");
+	// printf("[%c] %s a letter\n", 'g', is_letter('g') ? "is" : "is not");
+	
 
 	/***************************************Part 2*************************************************/
 	/*
@@ -62,7 +63,7 @@ int main(void)
 	*/
 
 	/***************************************Part 3*************************************************/
-	/*
+	
 	puts("\n*****Part 3*****");
 	const char *pattern = "/w/s/w";
 	printf("Pattern: [%s]\n", pattern);
@@ -76,7 +77,7 @@ int main(void)
 	const char *text_p2[EXAMPLE_COUNT] = { "#programming \t #rules", "#algebra #drools_", " #p1 #ftw" };
 	for (i = 0; i < EXAMPLE_COUNT; ++i)
 		printf("[%s] %s a match\n", text_p2[i], match_pattern(text_p2[i], pattern) ? "is" : "is not");
-	*/
+	
 
 	/***************************************Part 4*************************************************/
 	/*
@@ -100,6 +101,91 @@ int main(void)
 		}
 	}
 	*/
+
+	return 0;
+}
+
+int is_letter(int c){
+
+	if((c>=65 && c<=90) || (c>=97 && c<=122)){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+int is_separator(int c){
+
+	if (c==32 || c==9 || c==10 || c==46 || c==44)
+	{
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+const char * match_word(const char *src){
+	for (size_t i = 0; i < strlen(src); i++)
+	{
+		if (!is_letter(src[i]))
+		{
+			const char *pCharacter = &src[i];
+			return pCharacter;
+		}	
+	}
+}
+
+const char * match_separators(const char *src){
+	for (size_t i = 0; i < strlen(src); i++)
+	{
+		if (!is_separator(src[i]))
+		{
+			const char *pSeparator = &src[i];
+			return pSeparator;
+		}
+	}
+}
+
+int match_pattern(const char *src, const char* pattern){
+
+	int j = 0;
+	for (size_t i = 0; i < strlen(pattern)-1; i++)
+	{
+		if(pattern[i]=='/')
+		{
+			if (pattern[i+1]=='w')
+			{
+				while (is_letter(src[j]) && j<=strlen(src))
+				{
+					j++;
+				}
+				
+			}
+			else if (pattern[i+1]=='s'){
+				while (is_separator(src[j]) && j<=strlen(src))
+				{
+					j++;
+				}
+				
+			}
+			i+=2;
+		}
+		else if (pattern[i]==src[j])
+		{
+			j++;
+		}
+		// else{
+		// 	return 0;
+		// }
+
+		
+	}
+	if (j==strlen(src)-1)
+	{
+		return 1;
+	}
 
 	return 0;
 }
