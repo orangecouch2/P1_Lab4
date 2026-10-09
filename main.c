@@ -64,19 +64,19 @@ int main(void)
 
 	/***************************************Part 3*************************************************/
 	
-	puts("\n*****Part 3*****");
-	const char *pattern = "/w/s/w";
-	printf("Pattern: [%s]\n", pattern);
-	const char *text_p1[EXAMPLE_COUNT] = { "ul. Koszykowa", "Aleje Jerozolimskie 144", "ul. 30-lecia" };
-	int i;
-	for (i = 0; i < EXAMPLE_COUNT; ++i)
-		printf("[%s] %s a match\n", text_p1[i], match_pattern(text_p1[i], pattern) ? "is" : "is not");
+	// puts("\n*****Part 3*****");
+	// const char *pattern = "/w/s/w";
+	// printf("Pattern: [%s]\n", pattern);
+	// const char *text_p1[EXAMPLE_COUNT] = { "ul. Koszykowa", "Aleje Jerozolimskie 144", "ul. 30-lecia" };
+	// int i;
+	// for (i = 0; i < EXAMPLE_COUNT; ++i)
+	// 	printf("[%s] %s a match\n", text_p1[i], match_pattern(text_p1[i], pattern) ? "is" : "is not");
 
-	pattern = "#/w/s#/w";
-	printf("\nPattern: [%s]\n", pattern);
-	const char *text_p2[EXAMPLE_COUNT] = { "#programming \t #rules", "#algebra #drools_", " #p1 #ftw" };
-	for (i = 0; i < EXAMPLE_COUNT; ++i)
-		printf("[%s] %s a match\n", text_p2[i], match_pattern(text_p2[i], pattern) ? "is" : "is not");
+	// pattern = "#/w/s#/w";
+	// printf("\nPattern: [%s]\n", pattern);
+	// const char *text_p2[EXAMPLE_COUNT] = { "#programming \t #rules", "#algebra #drools_", " #p1 #ftw" };
+	// for (i = 0; i < EXAMPLE_COUNT; ++i)
+	// 	printf("[%s] %s a match\n", text_p2[i], match_pattern(text_p2[i], pattern) ? "is" : "is not");
 	
 
 	/***************************************Part 4*************************************************/
@@ -153,7 +153,7 @@ int match_pattern(const char *src, const char* pattern){
 	int j = 0;
 	for (size_t i = 0; i < strlen(pattern)-1; i++)
 	{
-		if(pattern[i]=='/')
+		if(pattern[i]=='/') // pattern = /w/s/w
 		{
 			if (pattern[i+1]=='w')
 			{
@@ -170,22 +170,28 @@ int match_pattern(const char *src, const char* pattern){
 				}
 				
 			}
-			i+=2;
+			i++;
 		}
 		else if (pattern[i]==src[j])
 		{
 			j++;
 		}
-		// else{
-		// 	return 0;
-		// }
-
 		
 	}
-	if (j==strlen(src)-1)
+	if (j==strlen(src))
 	{
 		return 1;
 	}
 
 	return 0;
+}
+
+void pattern_replace(char src[]){
+
+	for (size_t i = 0; i < count; i++)
+	{
+		/* code */
+	}
+	
+
 }

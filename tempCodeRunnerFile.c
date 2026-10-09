@@ -1,1 +1,10 @@
-int is_separator(int c);
+
+// void pattern_replace(char src[]){
+
+// 	for (size_t i = 0; i < count; i++)
+// 	{
+// 		/* code */
+// 	}
+	
+
+// }
